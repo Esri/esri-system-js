@@ -1,0 +1,29 @@
+{
+  "name": "esri-system-js",
+  "version": "0.0.1",
+  "description": "Load ArcGIS API for JavaScript modules using SystemJS",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^1.8.2"
+  },
+  "scripts": {
+    "test": "tsc",
+    "prepublish": "tsc",
+    "start": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcGIS/esri-system-js.git"
+  },
+  "keywords": [
+    "SystemJS",
+    "Esri",
+    "ArcGIS"
+  ],
+  "author": "Tom Wayson <tom@tomwayson.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ArcGIS/esri-system-js/issues"
+  },
+  "homepage": "https://github.com/ArcGIS/esri-system-js"
+}
