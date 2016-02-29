@@ -14,13 +14,14 @@ module esriSystem {
 
   // takes an array of modules and registers them as a module
   // with system.js using the given module name
-  function _register(mods, names, options = {outModuleName: 'esri', moduleNameOverrides: null}) {
-    System.register(options.outModuleName, [], function (exp) {
+  function _register(mods, names, options: any) {
+    const opts = options || {};
+    System.register(opts.outModuleName || 'esri', [], function (exp) {
       return {
         setters: [],
         execute: function () {
           mods.map(function (mod, idx) {
-            exp(moduleName(names[idx], options.moduleNameOverrides), mod);
+            exp(moduleName(names[idx], opts.moduleNameOverrides), mod);
           });
         }
       };

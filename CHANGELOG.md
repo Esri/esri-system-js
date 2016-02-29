@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Upcoming changes][unreleased]
 
+## [v0.0.2]
+
+### Changed
+- allow user to supply partial options to esriSytem.register()
+and use defaults for others #3
+
 ## [v0.0.1]
 
 ### Added
@@ -18,5 +24,6 @@ added npm scripts to compile TS
 .npmignore to include those files when publishing to NPM
 - added "docs" to README and started CHANGELOG
 
-[unreleased]: https://github.com/Esri/angular-esri-map/compare/v0.0.1...HEAD
-[v0.0.1]: https://github.com/Esri/angular-esri-map/commits/v0.0.1
+[unreleased]: https://github.com/arcgis/esri-system-js/compare/v0.0.2...HEAD
+[v0.0.2]: https://github.com/arcgis/esri-system-js/compare/v0.0.1...v0.0.2
+[v0.0.1]: https://github.com/arcgis/esri-system-js/commits/v0.0.1
