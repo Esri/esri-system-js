@@ -68,6 +68,10 @@ import { MapView } from 'esri-mods';
 import { esriRequest } from 'esri-mods';
 ```
 
+## Why?
+
+The [ArcGIS API for JavaScript] is based on Dojo, which uses AMD modules, and [SystemJS] can load AMD modules, so why is this needed? We've not been able to figure out a way to have [SystemJS] load Esri's modules directly. As with other loaders that support AMD, the issue is around plugins. You can see a summary of the issue [here](https://twitter.com/tomwayson/status/709456083388014594).
+
 ## Example Applications
 See these applications for examples of how to use this library:
 - [tomwayson/angular2-esri-example](https://github.com/tomwayson/angular2-esri-example) - Example app using the ArcGIS API for JavaScript v3 in an Angular2 app
