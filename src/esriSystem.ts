@@ -16,45 +16,84 @@ declare var require: Function;
 
 module esriSystem {
 
-  // return just the last part of a module name
-  function moduleName(name, overrides) {
-    if (overrides && overrides[name]) {
-      return overrides[name];
-    } else {
-      return name.match(/[^\/]+$/).shift();
-    }
-  }
-
-  // takes an array of modules and registers them as a module
-  // with system.js using the given module name
-  function _register(mods, names, options: any) {
-    const opts = options || {};
-    System.register(opts.outModuleName || 'esri', [], function(exp) {
-      return {
-        setters: [],
-        execute: function() {
-          mods.map(function(mod, idx) {
-            exp(moduleName(names[idx], opts.moduleNameOverrides), mod);
-          });
+    // return just the last part of a module name
+    function moduleName(name: string, overrides?: any) {
+        if (overrides && overrides[name]) {
+            return overrides[name];
+        } else {
+            return name.match(/[^\/]+$/).shift();
         }
-      };
-    });
-  }
+    }
 
-  // load esri modules and expose via a System.js module
-  export function register(moduleNames: string[], callback: Function, options) {
-    // TODO: config should be optional, parse from arguments
+    //get the module name from the url that system js thinks it's loading it from
+    function getName(location: string) {
+        let startIndex = location.lastIndexOf("esri");
+        if (startIndex === -1) startIndex = location.lastIndexOf("dojo");
+        return location.substring(startIndex, location.length);
+    }
 
-    // call Dojo's require to load esri modules
-    require(moduleNames, function(...modules) {
+    function registerToOutModule(mods, names, options: any) {
+        System.register(options.outModuleName || 'esri', [], function (exp) {
+            return {
+                setters: [],
+                execute: function () {
+                    mods.map(function (mod, idx) {
+                        exp(moduleName(names[idx], options.moduleNameOverrides), mod);
+                    });
+                }
+            };
+        });
+    }
 
-      // register a System.js module to wrap the required modules
-      _register(modules, moduleNames, options);
+    // takes an array of modules and registers them as a module
+    // with system.js using the given module name
+    function _register(mods, names: string[], options: any) {
+        const opts = options || {};
 
-      // call callback (if any)
-      if (callback) {
-        callback();
-      }
-    });
-  };
+        if (!opts.maintainModuleNames) {
+            //not maintaining module names so register all esri modules into outModuleName or 'esri' if outModuleName not set.
+            registerToOutModule(mods, names, options);
+            return;
+        }
+
+        if (opts.outModuleName || opts.moduleNameOverrides) {
+            console.info("esri-system-js: outModuleName and moduleNameOverrides options have no effect as maintainModuleNames is set to true");
+        }
+
+        //maintaining the module names so loop each module and register individually.
+        for (var i = 0, len = mods.length; i < len; i++) {
+
+            System.register(names[i], [], function (exp, idObj) {
+                let name = getName(idObj.id);
+                let index = names.indexOf(name);
+                let mod = mods[index];
+                let result = {
+                    setters: [],
+                    execute: () => {
+                        //Make the name 'default' here as there is only one export per module so it is technically the default.
+                        //Import using a default import statement - eg: import Map from 'esri/Map' 
+                        //It's possible this may only compile using 'system' module type in some IDEs using the official typings file though.
+                        exp("default", mod);
+                    }
+                };
+                return result;
+            });
+        }
+    }
+
+    // load esri modules and expose via a System.js module
+    export function register(moduleNames: string[], callback: Function, options) {
+        // TODO: config should be optional, parse from arguments
+
+        // call Dojo's require to load esri modules
+        require(moduleNames, function (...modules) {
+            // register a System.js module to wrap the required modules
+            _register(modules, moduleNames, options);
+
+            // call callback (if any)
+            if (callback) {
+                callback();
+            }
+        });
+    };
 }
