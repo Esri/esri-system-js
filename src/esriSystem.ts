@@ -33,7 +33,7 @@ module esriSystem {
     }
 
     function registerToOutModule(mods, names, options: any) {
-        System.register(options.outModuleName || 'esri', [], function (exp) {
+        System.register(options.outModuleName, [], function (exp) {
             return {
                 setters: [],
                 execute: function () {
@@ -45,19 +45,15 @@ module esriSystem {
         });
     }
 
-    // takes an array of modules and registers them as a module
-    // with system.js using the given module name
+    // takes an array of modules and registers them
+    // with system.js using the given module name(s)
     function _register(mods, names: string[], options: any) {
         const opts = options || {};
 
-        if (!opts.maintainModuleNames) {
-            //not maintaining module names so register all esri modules into outModuleName or 'esri' if outModuleName not set.
-            registerToOutModule(mods, names, options);
+        if (opts.outModuleName) {
+            // register all modules into a new module w/ the given name (i.e. 'esri-mods')
+            registerToOutModule(mods, names, opts);
             return;
-        }
-
-        if (opts.outModuleName || opts.moduleNameOverrides) {
-            console.info("esri-system-js: outModuleName and moduleNameOverrides options have no effect as maintainModuleNames is set to true");
         }
 
         //maintaining the module names so loop each module and register individually.

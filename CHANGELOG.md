@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Upcoming changes][unreleased]
 
+## [v1.0.0-beta.0]
+### Added
+- option to maintain module names, offering compatibility with official type definitions
+
+### Changed
+- if no options are supplied to register(), default to maintaing module names
+
 ## [v0.0.3]
 
 ### Changed
@@ -35,7 +42,8 @@ added npm scripts to compile TS
 .npmignore to include those files when publishing to NPM
 - added "docs" to README and started CHANGELOG
 
-[unreleased]: https://github.com/arcgis/esri-system-js/compare/v0.0.3...HEAD
+[unreleased]: https://github.com/arcgis/esri-system-js/compare/v1.0.0-beta.0...HEAD
+[v1.0.0-beta.0]: https://github.com/arcgis/esri-system-js/compare/v0.0.2...v1.0.0-beta.0
 [v0.0.3]: https://github.com/arcgis/esri-system-js/compare/v0.0.2...v0.0.3
 [v0.0.2]: https://github.com/arcgis/esri-system-js/compare/v0.0.1...v0.0.2
 [v0.0.1]: https://github.com/arcgis/esri-system-js/commits/v0.0.1

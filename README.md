@@ -15,6 +15,14 @@ npm install esri-system-js
 
 2) Include (in index.html):
 ```
+<!-- load SystemJS library -->
+<script src="node_modules/systemjs/dist/system.src.js"></script>
+
+<!-- load Esri library -->
+<link rel="stylesheet" href="//js.arcgis.com/4.0/esri/css/main.css">
+<script src="//js.arcgis.com/4.0/"></script>
+
+<!-- load esri-system-js library -->
 <script src="node_modules/esri-system-js/dist/esriSystem.js"></script>
 ```
 
@@ -31,7 +39,41 @@ System.config({
 });
 
 // load esri modules needed by this application
-// into a SystemJS module called esri-mods
+// and then regsiter each as it's own SystemJS module
+esriSystem.register(
+  // array of Esri module names to load and then register with SystemJS
+  [
+    'esri/Map',
+    'esri/views/MapView',
+    'esri/widgets/Home/HomeViewModel',
+    'esri/request'
+  ],
+
+  // optional callback function
+  function() {
+    // then bootstrap application
+    System.import('app/boot')
+      .then(null, console.error.bind(console));
+  });
+</script>
+```
+
+4) Import modules (in app/boot.ts or any other application module):
+```ts
+import Map from 'esri/Map';
+import MapView from 'esri/views/MapView';
+import esriRequest from 'esri/widgets/Home/HomeViewModel';
+```
+
+If you're writing your application code in TypeScript, you can now get type checking and intellisense for the above modules by downloading and using the [ArcGIS API for JavaScript type definitions].
+
+## Registering as a Single Module
+
+You can supply a third, optional argument to `esriSystem.register()` with options to register all the required Esri modules to a single new module. Note that registering all modules as a single SystemJS module will **not** work with the [ArcGIS API for JavaScript type definitions]). 
+
+```js
+// load esri modules needed by this application
+// and then regsiter a new SystemJS module that exposes them
 esriSystem.register(
   // array of Esri module names to load and then register with SystemJS
   [
@@ -47,10 +89,9 @@ esriSystem.register(
     System.import('app/boot')
       .then(null, console.error.bind(console));
   },
-
-  // optional paramaters
+  // options to register a new, single SystemJS module
   {
-    // name of SystemJS module that you will import from, defaults to 'esri'
+    // name of SystemJS module that you will import from
     outModuleName: 'esri-mods',
     // by default each module will use everything after the last '/' in their name
     // however you can override that for specific modules here
@@ -61,11 +102,9 @@ esriSystem.register(
 </script>
 ```
 
-4) Use (in app/boot.ts or any other TypeScript file):
-```js
-import { Map } from 'esri-mods';
-import { MapView } from 'esri-mods';
-import { esriRequest } from 'esri-mods';
+Now you can import these modules as follows:
+```ts
+import { Map, MapView, esriRequest } from 'esri-mods';
 ```
 
 ## Why?
@@ -74,8 +113,9 @@ The [ArcGIS API for JavaScript] is based on Dojo, which uses AMD modules, and [S
 
 ## Example Applications
 See these applications for examples of how to use this library:
-- [tomwayson/angular2-esri-example](https://github.com/tomwayson/angular2-esri-example) - Example app using the ArcGIS API for JavaScript v3 in an Angular2 app
 - [jwasilgeo/angular2-esri-playground](https://github.com/jwasilgeo/angular2-esri-playground) - Angular 2 & Esri 4 [View it live](http://jwasilgeo.github.io/angular2-esri-playground/)
+
+Have you built an application using esri-system-js? [Let us know](https://github.com/Esri/esri-system-js/issues/14) and we'll add it here.
 
 ## Development Instructions
 
@@ -91,15 +131,18 @@ Make sure you have [Node](http://nodejs.org/) installed.
 ## Credit
 This pattern was established by [@odoe](https://github.com/odoe/) in the [load.js](https://github.com/odoe/esrijs4-vm-angular2/blob/d309f546d1d183064e4b60d69ba88e9047ebc26c/app/load.ts) file of his [example of using ErsiJS 4.0 view models with Angular 2](https://github.com/odoe/esrijs4-vm-angular2).
 
+Later, [@nickcam](https://github.com/nickcam) came up with [the idea to register one SystemJS module for each Esri module required and maintain the exact same module names](https://github.com/Esri/esri-system-js/pull/10), which makes it possible to use the [ArcGIS API for JavaScript type definitions] for the modules you import.
+
 ## Resources
 * [ArcGIS API for JavaScript]
 * [SystemJS]
 * [TypeScript]
 * [Angular 2]
 
-[TypeScript]:http://www.typescriptlang.org/
 [SystemJS]:https://github.com/systemjs/systemjs
 [ArcGIS API for JavaScript]:https://developers.arcgis.com/javascript/
+[TypeScript]:http://www.typescriptlang.org/
+[ArcGIS API for JavaScript type definitions]:https://github.com/Esri/jsapi-resources/tree/master/4.x/typescript
 [Angular 2]:https://angular.io/
 
 ## Issues
