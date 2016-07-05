@@ -10,7 +10,7 @@ For example, if you wanted to use [ArcGIS API for JavaScript] modules in your [T
 
 1) Install:
 ```bash
-npm install esri-system-js
+npm install esri-system-js@beta --save
 ```
 
 2) Include (in index.html):
