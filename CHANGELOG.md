@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 [Upcoming changes][unreleased]
 
+### Support
+- add links to Josh Werts' blog post and example app
+
 ## [v1.0.0-beta.0]
 ### Added
 - option to maintain module names, offering compatibility with official type definitions

@@ -114,6 +114,7 @@ The [ArcGIS API for JavaScript] is based on Dojo, which uses AMD modules, and [S
 ## Example Applications
 See these applications for examples of how to use this library:
 - [jwasilgeo/angular2-esri-playground](https://github.com/jwasilgeo/angular2-esri-playground) - Angular 2 & Esri 4 [View it live](http://jwasilgeo.github.io/angular2-esri-playground/)
+- Josh Wert's blog post on [ESRI Javascript API 4 with Angular 2 and Typescript](http://joshwerts.com/blog/2016/05/17/esri-javascript-api-4-with-angular-2-and-typescript/) - includes Jasmine/Karma test configuration [View it live](http://joshwerts.com/jsapi4-angular2/)
 
 Have you built an application using esri-system-js? [Let us know](https://github.com/Esri/esri-system-js/issues/14) and we'll add it here.
 
