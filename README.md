@@ -2,7 +2,7 @@
 Load [ArcGIS API for JavaScript] modules using [SystemJS]
 
 Provides a wrapper around [SystemJS]'s `register()` function
-that will fist use Dojo's AMD loader to load Esri modules,
+that will first use Dojo's AMD loader to load Esri modules,
 and then register a SystemJS module that will expose them.
 
 ## Quick Start
@@ -62,7 +62,7 @@ esriSystem.register(
 ```ts
 import Map from 'esri/Map';
 import MapView from 'esri/views/MapView';
-import esriRequest from 'esri/widgets/Home/HomeViewModel';
+import esriRequest from 'esri/request';
 ```
 
 If you're writing your application code in TypeScript, you can now get type checking and intellisense for the above modules by downloading and using the [ArcGIS API for JavaScript type definitions].
