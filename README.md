@@ -6,9 +6,9 @@ that will first use Dojo's AMD loader to load Esri modules,
 and then register a SystemJS module that will expose them.
 
 ## SystemJS Plugin
-[systemjs-plugin-dojo](https://www.npmjs.com/package/systemjs-plugin-dojo) SystemJS plugin for loading Dojo modules that works with the ArcGIS API for JavaScript. [ng2-esri-demo](https://github.com/beginor/ng2-esri-demo) shows how to use that plugin to load ArcGIS modules in an Angular application.
+[systemjs-plugin-dojo](https://www.npmjs.com/package/systemjs-plugin-dojo) is a SystemJS plugin for loading Dojo modules that works with the ArcGIS API for JavaScript. [ng2-esri-demo](https://github.com/beginor/ng2-esri-demo) shows how to use that plugin to load ArcGIS modules in an Angular application.
 
-This library (esri-system-js) is **not** a SystemJS plugin.
+This library (esri-system-js) predates the above SystemJS plugin, but is **not** a SystemJS plugin, and therefore requires you to perform the additional configuration steps shown below.
 
 ## Quick Start
 For example, if you wanted to use [ArcGIS API for JavaScript] modules in your [TypeScript] code in an [Angular 2] application.
@@ -70,7 +70,12 @@ import MapView from 'esri/views/MapView';
 import esriRequest from 'esri/request';
 ```
 
-If you're writing your application code in TypeScript, you can now get type checking and intellisense for the above modules by downloading and using the [ArcGIS API for JavaScript type definitions].
+If your project requires you to configure SystemJS with `defaultJSExtensions: true`,  see [this issue](https://github.com/Esri/esri-system-js/issues/25
+) for additional configuration steps.
+
+### Using esri-system-js in TypeScript Applications
+
+If you're writing your application code in TypeScript, you can now get type checking and intellisense for the above modules by downloading and using the [ArcGIS API for JavaScript type definitions]. Note that you will need to [configure the TypeScript compiler](https://www.typescriptlang.org/docs/handbook/compiler-options.html) to use `"allowSyntheticDefaultImports": true`.
 
 ## Registering as a Single Module
 
