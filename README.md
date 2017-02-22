@@ -5,6 +5,11 @@ Provides a wrapper around [SystemJS]'s `register()` function
 that will first use Dojo's AMD loader to load Esri modules,
 and then register a SystemJS module that will expose them.
 
+## SystemJS Plugin
+[systemjs-plugin-dojo](https://www.npmjs.com/package/systemjs-plugin-dojo) SystemJS plugin for loading Dojo modules that works with the ArcGIS API for JavaScript. [ng2-esri-demo](https://github.com/beginor/ng2-esri-demo) shows how to use that plugin to load ArcGIS modules in an Angular application.
+
+This library (esri-system-js) is **not** a SystemJS plugin.
+
 ## Quick Start
 For example, if you wanted to use [ArcGIS API for JavaScript] modules in your [TypeScript] code in an [Angular 2] application.
 
