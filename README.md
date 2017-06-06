@@ -128,6 +128,7 @@ See these applications for examples of how to use this library:
 - [jwasilgeo/angular2-esri-playground](https://github.com/jwasilgeo/angular2-esri-playground) - Angular 2 & Esri 4 [View it live](http://jwasilgeo.github.io/angular2-esri-playground/)
 - Josh Wert's blog post on [ESRI Javascript API 4 with Angular 2 and Typescript](http://joshwerts.com/blog/2016/05/17/esri-javascript-api-4-with-angular-2-and-typescript/) - includes Jasmine/Karma test configuration [View it live](http://joshwerts.com/jsapi4-angular2/)
 - "Angular 2 + Esri 3 + Dojo Plugin" - Angular 2 with Esri JSAPI v3, demonstrating how to incorporate an external Dojo package/plugin for point layer clustering with esri-system-js. [View it live on plnkr](http://plnkr.co/edit/bZNzdI?p=preview). (This demo originated from [issue #9](https://github.com/Esri/esri-system-js/issues/9).)
+- [Angular and Esri JavaScript API](https://github.com/S-Gaballah/Angular-Esri-ArcGIS-API-3) - Startup project for ArcGIS API for JavaScript V3, Angular and Material Design
 
 Have you built an application using esri-system-js? [Let us know](https://github.com/Esri/esri-system-js/issues/14) and we'll add it here.
 
