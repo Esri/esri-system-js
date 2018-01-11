@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 [Upcoming changes][unreleased]
 
 ### Support
+- add deprecation message to README
+- add links to systemjs-plugin-dojo and ng2-esri-demo to README
 - add links to Josh Werts' blog post and example app
 
 ## [v1.0.0-beta.0]
